@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { AppService } from './app.service';
 
+import { AboutComponent } from './about/about.component';
+
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -18,5 +20,8 @@ export class AppComponent implements OnInit  {
     });
   }
 
+  getDynamicInput() {
+    return AboutComponent;
+  }
 
 }
