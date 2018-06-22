@@ -1,30 +1,37 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, PipeTransform, Pipe } from '@angular/core';
 
 import { AppService } from './../app.service';
+import myGlobals = require('./../app.globals');
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about',
-  template: `Say {{userName}}`,
-  styleUrls: ['./about.component.css']
+  template: `<div [innerHTML]="result"></div>`,
+  // template: `<div [innerHTML]="result | safeHtml"></div>`,
+  // templateUrl: './about.component.html',
+  // styleUrls: ['./about.component.css']
 })
 
 export class AboutComponent implements OnInit {
 
-  constructor(private appService: AppService) { }
+  result: SafeHtml;
 
-  pricelist: any;
-  result: string = 'Hello';
-  _userName: string;
+  constructor(private appService: AppService) {
+    this.result = myGlobals.indexLine;
+  }
 
   ngOnInit() {
-    this.appService.getPriceList().subscribe(d => {
-      this.pricelist = d.pricelist;
-    });
+    // console.log(myGlobals.pricelist[myGlobals.indexLine].description_ru);
+    this.result = myGlobals.pricelist[myGlobals.indexLine].description_ru;
+    if (this.result == "") this.result = "No description"
   }
 
-  @Input()
-  set userName(age: string) {
-    this._userName = age;
-  }
-  get userName() { return this._userName; }
+  // @Pipe({ name: 'safeHtml' })
+  // export class SafeHtmlPipe implements PipeTransform {
+  //   constructor(private sanitized: DomSanitizer) { }
+  //   transform(value: string) {
+  //     console.log(this.sanitized.bypassSecurityTrustHtml(value))
+  //     return this.sanitized.bypassSecurityTrustHtml(value);
+  //   }
+  // }
 }

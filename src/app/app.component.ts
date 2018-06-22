@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 import { AboutComponent } from './about/about.component';
+import myGlobals = require('./app.globals');
 
 @Component({
   selector: 'my-app',
@@ -8,16 +9,13 @@ import { AboutComponent } from './about/about.component';
 })
 
 export class AppComponent implements OnInit {
-  constructor(private appService: AppService) { 
-    // this.text = 'Other World';
-  }
+  constructor(private appService: AppService) { }
 
   pricelist: any;
-  name:string="Tom";
 
   ngOnInit() {
     this.appService.getPriceList().subscribe(d => {
-      this.pricelist = d.pricelist;
+      this.pricelist = myGlobals.pricelist = d.pricelist;
     });
   }
 
@@ -25,14 +23,10 @@ export class AppComponent implements OnInit {
     return AboutComponent;
   }
 
-  mouseEnter(div: string) {
-    console.log("mouse enter : " + div);
-    // this.text = 'Enter';
+  mouseEnter(indexLine: string) {
+    myGlobals.indexLine = indexLine;
+    // console.log("mouse enter : " + indexLine + " " + myGlobals.indexLine);
   }
 
-  mouseLeave(div: string) {
-    console.log('mouse leave :' + div);
-    // this.text = 'Leave';
-  }
-
+  mouseLeave(indexLine: string) { }
 }

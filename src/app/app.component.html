@@ -5,8 +5,10 @@
       <table *ngIf="pricelist">
         <tbody>
           <tr *ngFor="let item of pricelist; let i = index">
-            <td><a (mouseenter) ="mouseEnter('div a') "  (mouseleave) ="mouseLeave('div A')" class="popover" popover="Popover" popoverPlacement="auto" [popoverComponent]="getDynamicInput()"  [attr.data-index]="i">{{ item.name }}</a></td>
-            <!-- <td><a popover="Popover" popoverPlacement="auto" popoverContent="getDynamicInput()">{{ item.name }}</a></td> -->
+            <td>
+              <a (mouseenter)="mouseEnter(i)" class="popover" popover="Popover" popoverPlacement="auto" [popoverComponent]="getDynamicInput()"
+                [attr.data-index]="i">{{ item.name }}</a>
+            </td>
             <td> от {{ item.price.period[0].cost }} {{ item.price.currency }}</td>
           </tr>
         </tbody>

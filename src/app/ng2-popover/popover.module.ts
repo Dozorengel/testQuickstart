@@ -5,25 +5,23 @@ import { PopoverDirective } from './popover.directive';
 import { PositionService } from './position';
 import { AboutComponent } from '../about/about.component';
 
-
-
 @NgModule({
   imports: [
     CommonModule
   ],
   providers: [PositionService],
   exports: [
-        PopoverComponent,
-        PopoverDirective,
-        
-    ],
-  entryComponents: [
-      PopoverComponent,
-      AboutComponent,
+    PopoverComponent,
+    PopoverDirective,
 
+  ],
+  entryComponents: [
+    PopoverComponent,
+    AboutComponent
   ],
 
   declarations: [PopoverComponent,
-                PopoverDirective]
+    PopoverDirective]
 })
+
 export class PopoverModule { }

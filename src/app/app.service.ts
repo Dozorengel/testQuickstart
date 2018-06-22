@@ -1,4 +1,4 @@
-import { Injectable }              from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -10,7 +10,7 @@ import 'rxjs/add/observable/throw';
 
 export class AppService {
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) { }
 
   handleResponse(res: Response): any {
     let body = res.json() || {};
@@ -24,9 +24,9 @@ export class AppService {
 
   httpGet(url: string): Observable<any> {
     return this.http
-                   .get(url, {})
-                   .map(this.handleResponse.bind(this))
-                   .catch(this.handleError);
+      .get(url, {})
+      .map(this.handleResponse.bind(this))
+      .catch(this.handleError);
   }
 
   getPriceList() {

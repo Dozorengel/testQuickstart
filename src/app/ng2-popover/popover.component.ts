@@ -1,5 +1,5 @@
-import { Component, Input, ElementRef, AfterViewChecked, ComponentFactoryResolver, ViewContainerRef, ComponentFactory, ViewChild} from '@angular/core';
-import {PositionService} from './position';
+import { Component, Input, ElementRef, AfterViewChecked, ComponentFactoryResolver, ViewContainerRef, ComponentFactory, ViewChild } from '@angular/core';
+import { PositionService } from './position';
 @Component({
   selector: 'app-popover',
   templateUrl: './popover.component.html',
@@ -24,7 +24,7 @@ export class PopoverComponent implements AfterViewChecked {
   private dynamicRef: any;
 
   constructor(private positionService: PositionService, private element: ElementRef,
-   private viewContainer: ViewContainerRef, private componentFactoryResolver: ComponentFactoryResolver) {}
+    private viewContainer: ViewContainerRef, private componentFactoryResolver: ComponentFactoryResolver) { }
 
   setStyles() {
     let styles = {
@@ -43,8 +43,8 @@ export class PopoverComponent implements AfterViewChecked {
 
     let p = this.positionService
       .positionElements(hostEl.nativeElement,
-      targetEl.nativeElement.children[0],
-      this.placement, true);
+        targetEl.nativeElement.children[0],
+        this.placement, true);
 
     this.top = p['top'] + 'px';
     this.left = p['left'] + 'px';
